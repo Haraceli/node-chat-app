@@ -13,8 +13,22 @@
 </head>
 
 <body>
-  <h1>Welcome to the chat app</h1>
+  <h3><small>Welcome to the chat app</small></h3>
+
+  <ol id="messages"></ol>
+  <form class="form-inline" id="message-form">
+    <div class="form-group">
+      <input type="text" id="message" name="message" class="form-control mx-sm-3" placeholder="Message">
+      <button type="submit" class="btn btn-primary my-1">Submit</button>
+    </div>
+  </form>
+
+
+
+
   <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/libs/jquery-3.2.1.min.js"></script>
   <script src="/js/index.js"></script>
 </body>
+
 </html>

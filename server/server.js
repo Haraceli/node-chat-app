@@ -17,18 +17,15 @@ io.on('connection', (socket) => {
   console.log('New user connected');
 
   //emit event to one connection
-  socket.emit('welcomeMessage', generateMessage('Admin', 'Welcome to chat app'));
+  socket.emit('newMessage', generateMessage('Admin', 'Welcome to chat app'));
   //emit event to other connections
-  socket.broadcast.emit('welcomeMessage', generateMessage('Admin', 'New user joined to chat'));
+  socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined to chat'));
 
-  socket.on('createMessage', (message) => {
+  socket.on('createMessage', (message, callback) => {
     console.log('Create message', message);
     //emit event to every single connection
-    io.emit('newMessage', {
-      from: message.from,
-      text: message.text,
-      createdAt: new Date().getTime()
-    });
+    io.emit('newMessage', generateMessage(message.from, message.text));
+    callback('This is from the server');
 
     // socket.broadcast.emit('newMessage', {
     //   from: message.from,
